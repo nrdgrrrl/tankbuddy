@@ -26,6 +26,12 @@ class Tank
      */
     private $description;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="tanks")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
     public function getId()
     {
         return $this->id;
@@ -51,6 +57,18 @@ class Tank
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
