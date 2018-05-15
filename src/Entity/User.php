@@ -25,10 +25,16 @@ class User extends BaseUser
      */
     private $tanks;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\ReadingType", mappedBy="User")
+     */
+    private $readingTypes;
+
     public function __construct()
     {
         parent::__construct();
         $this->tanks = new ArrayCollection();
+        $this->readingTypes = new ArrayCollection();
         // your own logic
     }
 
@@ -57,6 +63,37 @@ class User extends BaseUser
             // set the owning side to null (unless already changed)
             if ($tank->getUser() === $this) {
                 $tank->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ReadingType[]
+     */
+    public function getReadingTypes(): Collection
+    {
+        return $this->readingTypes;
+    }
+
+    public function addReadingType(ReadingType $readingType): self
+    {
+        if (!$this->readingTypes->contains($readingType)) {
+            $this->readingTypes[] = $readingType;
+            $readingType->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReadingType(ReadingType $readingType): self
+    {
+        if ($this->readingTypes->contains($readingType)) {
+            $this->readingTypes->removeElement($readingType);
+            // set the owning side to null (unless already changed)
+            if ($readingType->getUser() === $this) {
+                $readingType->setUser(null);
             }
         }
 
