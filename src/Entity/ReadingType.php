@@ -31,10 +31,7 @@ class ReadingType
      */
     private $Units;
 
-    /**
-     * @ORM\Column(type="string", length=16)
-     */
-    private $MeasureUnit;
+
 
     /**
      * @ORM\Column(type="boolean")
@@ -83,18 +80,6 @@ class ReadingType
     public function setUnits(string $Units): self
     {
         $this->Units = $Units;
-
-        return $this;
-    }
-
-    public function getMeasureUnit(): ?string
-    {
-        return $this->MeasureUnit;
-    }
-
-    public function setMeasureUnit(string $MeasureUnit): self
-    {
-        $this->MeasureUnit = $MeasureUnit;
 
         return $this;
     }

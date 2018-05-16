@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+
+{% block readingtype_list %}
+<table class="table table-striped">
+<tr>
+	<th>ID</th>
+	<th>Common Name</th>
+	<th>Scientific Name</th>
+	<th>Units</th>
+	<th>Is Public?</th>
+</tr>
+{% for readingtype in readingtypes %}
+	<tr>
+		<td>{{ readingtype.id }}</td>
+		<td>{{ readingtype.CommonName }}</td>
+		<td>{{ readingtype.ScientificName }}</td>
+		<td>{{ readingtype.Units }}</td>
+		<td>{{ readingtype.IsPublic }}</td>
+
+	</tr>
+{% endfor %}
+</table>
+{% endblock %}
+
+{% endblock %}
